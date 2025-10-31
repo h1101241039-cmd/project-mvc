@@ -1,7 +1,14 @@
 <?php
+namespace App\Controllers;
+use App\Core\Controller;
 
-class HomeController {
+class HomeController extends Controller {
     public function index() {
-        echo "<h1>Selamat datang di aplikasi MVC Railway </h1>";
+        $data = [
+            'title' => 'Home Page',
+            'message' => 'Selamat datang di MVC Framework'
+        ];
+        
+        $this->view('home.index', $data);
     }
 }
