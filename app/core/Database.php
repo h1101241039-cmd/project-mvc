@@ -4,7 +4,7 @@ class Database {
     private $conn;
     
     private function __construct() {
-        $config = require_once _DIR_ . '/../../config/database.php';
+        $config = require_once __DIR__ . '/../../config/database.php';
         
         try {
 
