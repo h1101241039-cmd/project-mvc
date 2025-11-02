@@ -4,11 +4,6 @@ namespace App\Core;
 class Model {
     protected $db;
     protected $table;
-    
-    public function __construct() {
-        $this->db = \Database::getInstance()->getConnection();
-    }
-    
     public function all() {
         $stmt = $this->db->query("SELECT * FROM {$this->table}");
         return $stmt->fetchAll();

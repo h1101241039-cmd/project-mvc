@@ -33,30 +33,18 @@ class Router {
         echo "404 - Page Not Found";
     }
     
-private function executeCallback($callback, $params = []) {
-    if (is_string($callback)) {
-        [$controllerName, $method] = explode('@', $callback);
-        $controllerFile = __DIR__ . "/../controllers/" . $controllerName . ".php";
-
-        if (file_exists($controllerFile)) {
-            require_once $controllerFile;
-
-            if (class_exists($controllerName)) {
-                $controllerInstance = new $controllerName();
-
-                if (method_exists($controllerInstance, $method)) {
-                    return call_user_func_array([$controllerInstance, $method], $params);
-                } else {
-                    die("❌ Method <b>$method</b> tidak ditemukan di <b>$controllerName</b>");
-                }
-            } else {
-                die("❌ Class <b>$controllerName</b> tidak ditemukan di file $controllerFile");
+    private function executeCallback($callback, $params = []) {
+        if(is_string($callback)) {
+            $parts = explode('@', $callback);
+            $controller = "App\\Controllers\\" . $parts[0];
+            $method = $parts[1];
+            
+            if(class_exists($controller)) {
+                $controllerInstance = new $controller();
+                return call_user_func_array([$controllerInstance, $method], $params);
             }
-        } else {
-            die("❌ File controller <b>$controllerFile</b> tidak ditemukan");
         }
+       
+        return call_user_func_array($callback, $params);
     }
-
-    return call_user_func_array($callback, $params);
-}
 }
