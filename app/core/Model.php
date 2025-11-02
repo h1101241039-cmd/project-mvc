@@ -6,7 +6,7 @@ class Model {
     protected $table;
     
     public function __construct() {
-        $this->db = \Database::getInstance()->getConnection();
+        $this->db = Database::getInstance()->getConnection();
     }
     
     public function all() {

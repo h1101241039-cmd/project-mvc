@@ -1,11 +1,10 @@
 <?php
 
-// Railway menyediakan MySQL variables otomatis
 return [
-    'host' => getenv('MYSQLHOST') ?: 'localhost',
-    'port' => getenv('MYSQLPORT') ?: '3306',
-    'dbname' => getenv('MYSQLDATABASE') ?: 'mvc_db',
-    'username' => getenv('MYSQLUSER') ?: 'root',
-    'password' => getenv('MYSQLPASSWORD') ?: '',
+    'host' => getenv('DB_HOST') ?: 'localhost',
+    'port' => getenv('DB_PORT') ?: '3306',
+    'dbname' => getenv('DB_NAME') ?: 'mvc_db',
+    'username' => getenv('DB_USER') ?: 'root',
+    'password' => getenv('DB_PASSWORD') ?: '',
     'charset' => 'utf8mb4'
 ];
